@@ -39,7 +39,7 @@
 
 #pragma mark - About UI
 - (void)setupUI{
-
+    
     UISlider *bufferSlider = [[UISlider alloc]init];
     [bufferSlider setUserInteractionEnabled:NO];
     [bufferSlider setThumbTintColor:[UIColor clearColor]];
@@ -62,6 +62,17 @@
 }
 
 
+#pragma mark - Public Methods
+
+- (void)addTarget:(nullable id)target action:(nonnull SEL)sel
+ forControlEvents:(UIControlEvents)controlEvent;{
+    
+    [self.progressSlider addTarget:target action:sel forControlEvents:controlEvent];
+    
+}
+
+
+
 
 #pragma mark - Setters/Getters
 
@@ -79,6 +90,12 @@
     [self.bufferSlider setMaximumValue:maximumValue];
 }
 
+- (void)setFrame:(CGRect)frame{
+    
+    [super setFrame:frame];
+    [self.bufferSlider setFrame:self.bounds];
+    [self.progressSlider setFrame:self.bounds];
+}
 /**
  *  Buffer Slider
  */
@@ -104,14 +121,14 @@
 
 
 - (void)setBufferTrackImage:(UIImage *)bufferTrackImage{
-
+    
     _bufferTrackImage = bufferTrackImage;
     [self.bufferSlider setMinimumTrackImage:bufferTrackImage forState:UIControlStateNormal];
 }
 
 
 - (void)setMaxBufferTrackImage:(UIImage *)maxBufferTrackImage{
-
+    
     _maxBufferTrackImage = maxBufferTrackImage;
     [self.bufferSlider setMaximumTrackImage:maxBufferTrackImage forState:UIControlStateNormal];
 }
@@ -126,14 +143,14 @@
 
 
 - (void)setProgressTrackColor:(UIColor *)progressTrackColor{
-
+    
     _progressTrackColor = progressTrackColor;
     [self.progressSlider setMinimumTrackTintColor:progressTrackColor];
 }
 
 
 - (void)setThumbTintColor:(UIColor *)thumbTintColor{
-
+    
     _thumbTintColor = thumbTintColor;
     [self.progressSlider setThumbTintColor:thumbTintColor];
 }
@@ -146,8 +163,12 @@
 }
 
 - (void)setThumbImage:(UIImage *)thumbImage{
-
+    
     _thumbImage = thumbImage;
     [self.progressSlider setThumbImage:thumbImage forState:UIControlStateNormal];
 }
+
+
+
+
 @end

@@ -40,5 +40,9 @@
 @property (nonatomic, strong) UIImage * thumbImage;//滑块图片
 
 
+// Methods
+- (void)addTarget:(nullable id)target action:(nonnull SEL)sel
+ forControlEvents:(UIControlEvents)controlEvent;
+
 
 @end
